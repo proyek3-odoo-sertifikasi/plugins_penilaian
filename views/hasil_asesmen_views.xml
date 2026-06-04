@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List / Tree View -->
+    <record id="view_lsp_hasil_asesmen_tree" model="ir.ui.view">
+        <field name="name">lsp.hasil.asesmen.tree</field>
+        <field name="model">lsp.hasil.asesmen</field>
+        <field name="arch" type="xml">
+            <list string="Hasil Asesmen" decoration-info="state == 'proses'" decoration-success="status_kelulusan == 'lulus'" decoration-danger="status_kelulusan == 'tidak_lulus'">
+                <field name="name"/>
+                <field name="student_id"/>
+                <field name="asesor_id"/>
+                <field name="jadwal_id"/>
+                <field name="nilai_total"/>
+                <field name="nilai_maksimal"/>
+                <field name="status_kelulusan" widget="badge" decoration-success="status_kelulusan == 'lulus'" decoration-danger="status_kelulusan == 'tidak_lulus'" decoration-warning="status_kelulusan == 'menunggu'"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_lsp_hasil_asesmen_form" model="ir.ui.view">
+        <field name="name">lsp.hasil.asesmen.form</field>
+        <field name="model">lsp.hasil.asesmen</field>
+        <field name="arch" type="xml">
+            <form string="Hasil Asesmen">
+                <header>
+                    <button string="Mulai Penilaian" type="object" name="action_proses" class="btn-primary" invisible="state != 'draft'"/>
+                    <button string="Selesai Evaluasi" type="object" name="action_selesai" class="btn-primary" invisible="state != 'proses'"/>
+                    <button string="Set Draft" type="object" name="action_set_draft" invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,proses,selesai"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="student_id" readonly="state == 'selesai'"/>
+                            <field name="skema_id"/>
+                            <field name="jadwal_id" readonly="state == 'selesai'"/>
+                        </group>
+                        <group>
+                            <field name="asesor_id" readonly="state == 'selesai'"/>
+                            <field name="survey_input_id" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Lembar Jawaban Asesi">
+                            <field name="line_ids" readonly="state == 'selesai'">
+                                <list editable="bottom" create="0" delete="0">
+                                    <field name="page_id" readonly="1" optional="show"/>
+                                    <field name="question_id" readonly="1"/>
+                                    <field name="tipe_soal" readonly="1" widget="badge" decoration-info="tipe_soal == 'essay'" decoration-warning="tipe_soal == 'praktikum'" decoration-success="tipe_soal == 'pg'"/>
+                                    <field name="jawaban_asesi" readonly="1"/>
+                                    <field name="is_pg_correct" readonly="1" optional="show"/>
+                                    <field name="nilai" string="Nilai (0-100)"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Nilai per Unit Kompetensi">
+                            <field name="unit_line_ids" readonly="1">
+                                <list create="0" edit="0" delete="0">
+                                    <field name="unit_code"/>
+                                    <field name="page_id"/>
+                                    <field name="nilai" widget="progressbar"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Hasil Evaluasi Akhir">
+                            <group>
+                                <group string="Skor">
+                                    <field name="nilai_total"/>
+                                    <field name="nilai_maksimal"/>
+                                    <field name="nilai_lulus"/>
+                                    <field name="nilai_lulus_kumulatif"/>
+                                </group>
+                                <group string="Kelulusan">
+                                    <field name="status_kelulusan" widget="badge" decoration-success="status_kelulusan == 'lulus'" decoration-danger="status_kelulusan == 'tidak_lulus'" decoration-warning="status_kelulusan == 'menunggu'"/>
+                                </group>
+                            </group>
+                            <group string="Catatan Evaluasi">
+                                <field name="catatan_asesor" placeholder="Berikan feedback atau catatan evaluasi untuk asesi..." readonly="state == 'selesai'"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_lsp_hasil_asesmen" model="ir.actions.act_window">
+        <field name="name">Hasil Asesmen</field>
+        <field name="res_model">lsp.hasil.asesmen</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Hasil asesmen asesi akan muncul secara otomatis di sini setelah asesi menyelesaikan ujian survey.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_lsp_detail_jawaban_form" model="ir.ui.view">
+    <field name="name">lsp.detail.jawaban.inline.form</field>
+    <field name="model">lsp.detail.jawaban</field>
+    <field name="arch" type="xml">
+      <form string="Detail Jawaban">
+        <sheet>
+          <group>
+            <field name="tipe_soal"/>
+            <field name="soal_ref"/>
+          </group>
+          <group>
+            <field name="jawaban_asesi"/>
+            <field name="jawaban_benar"/>
+            <field name="is_correct" readonly="1"/>
+            <field name="nilai"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

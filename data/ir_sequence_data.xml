@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <!-- Sequence untuk nomor hasil asesmen: HASIL/2026/001 -->
+    <record id="seq_lsp_hasil_asesmen" model="ir.sequence">
+      <field name="name">LSP Hasil Asesmen</field>
+      <field name="code">lsp.hasil.asesmen</field>
+      <field name="prefix">HASIL/%(year)s/</field>
+      <field name="padding">3</field>
+      <field name="company_id" eval="False"/>
+    </record>
+  </data>
+</odoo>

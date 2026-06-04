@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lsp_hasil_asesmen_base,lsp.hasil.asesmen.base,model_lsp_hasil_asesmen,base.group_user,1,0,0,0
+access_lsp_hasil_asesmen_line_base,lsp.hasil.asesmen.line.base,model_lsp_hasil_asesmen_line,base.group_user,1,0,0,0
+access_lsp_hasil_asesmen_unit_base,lsp.hasil.asesmen.unit.base,model_lsp_hasil_asesmen_unit,base.group_user,1,0,0,0
+access_lsp_hasil_asesmen_portal,lsp.hasil.asesmen.portal,model_lsp_hasil_asesmen,base.group_portal,1,0,0,0
+access_lsp_hasil_asesmen_line_portal,lsp.hasil.asesmen.line.portal,model_lsp_hasil_asesmen_line,base.group_portal,1,0,0,0
+access_lsp_hasil_asesmen_unit_portal,lsp.hasil.asesmen.unit.portal,model_lsp_hasil_asesmen_unit,base.group_portal,1,0,0,0
+access_lsp_hasil_asesmen_user,lsp.hasil.asesmen.user,model_lsp_hasil_asesmen,plugins_manajement_asesor.group_asesor,1,1,1,1
+access_lsp_hasil_asesmen_line_user,lsp.hasil.asesmen.line.user,model_lsp_hasil_asesmen_line,plugins_manajement_asesor.group_asesor,1,1,1,1
+access_lsp_hasil_asesmen_unit_user,lsp.hasil.asesmen.unit.user,model_lsp_hasil_asesmen_unit,plugins_manajement_asesor.group_asesor,1,1,1,1
+access_lsp_hasil_asesmen_manager,lsp.hasil.asesmen.manager,model_lsp_hasil_asesmen,plugins_manajement_asesor.group_admin_lsp,1,1,1,1
+access_lsp_hasil_asesmen_line_manager,lsp.hasil.asesmen.line.manager,model_lsp_hasil_asesmen_line,plugins_manajement_asesor.group_admin_lsp,1,1,1,1
+access_lsp_hasil_asesmen_unit_manager,lsp.hasil.asesmen.unit.manager,model_lsp_hasil_asesmen_unit,plugins_manajement_asesor.group_admin_lsp,1,1,1,1
