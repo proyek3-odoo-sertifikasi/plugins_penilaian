@@ -25,9 +25,9 @@
         <field name="arch" type="xml">
             <form string="Hasil Asesmen">
                 <header>
-                    <button string="Mulai Penilaian" type="object" name="action_proses" class="btn-primary" invisible="state != 'draft'"/>
-                    <button string="Selesai Evaluasi" type="object" name="action_selesai" class="btn-primary" invisible="state != 'proses'"/>
-                    <button string="Set Draft" type="object" name="action_set_draft" invisible="state == 'draft'"/>
+                    <button string="Mulai Penilaian" type="object" name="action_proses" class="btn-primary" invisible="state != 'draft'" groups="plugins_manajement_asesor.group_asesor"/>
+                    <button string="Selesai Evaluasi" type="object" name="action_selesai" class="btn-primary" invisible="state != 'proses'" groups="plugins_manajement_asesor.group_asesor"/>
+                    <button string="Set Draft" type="object" name="action_set_draft" invisible="state == 'draft'" groups="plugins_manajement_asesor.group_asesor"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,proses,selesai"/>
                 </header>
                 <sheet>
