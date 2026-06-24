@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ==========================================================
+         Record Rules: Hasil Asesmen
+         - Asesor hanya bisa membaca & mengedit Hasil Asesmen
+           yang asesor_id-nya adalah dirinya sendiri.
+         - Admin LSP bisa melihat semua Hasil Asesmen (full read).
+         ========================================================== -->
+
+    <!-- Rule 1: Asesor hanya lihat Hasil Asesmen miliknya -->
+    <record id="rule_hasil_asesmen_asesor_own" model="ir.rule">
+        <field name="name">Asesor: Hanya Lihat Hasil Asesmen Miliknya</field>
+        <field name="model_id" ref="plugins_penilaian.model_lsp_hasil_asesmen"/>
+        <field name="domain_force">[('asesor_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('plugins_manajement_asesor.group_asesor'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Rule 2: Admin LSP bisa lihat semua Hasil Asesmen -->
+    <record id="rule_hasil_asesmen_admin_lsp_all" model="ir.rule">
+        <field name="name">Admin LSP: Full Read Hasil Asesmen</field>
+        <field name="model_id" ref="plugins_penilaian.model_lsp_hasil_asesmen"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('plugins_manajement_asesor.group_admin_lsp'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Rule 3: Asesor hanya lihat Detail Jawaban (line) dari Hasil Asesmen miliknya -->
+    <record id="rule_hasil_asesmen_line_asesor_own" model="ir.rule">
+        <field name="name">Asesor: Hanya Lihat Detail Jawaban Miliknya</field>
+        <field name="model_id" ref="plugins_penilaian.model_lsp_hasil_asesmen_line"/>
+        <field name="domain_force">[('hasil_asesmen_id.asesor_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('plugins_manajement_asesor.group_asesor'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <!-- Rule 4: Asesor hanya lihat Unit Kompetensi dari Hasil Asesmen miliknya -->
+    <record id="rule_hasil_asesmen_unit_asesor_own" model="ir.rule">
+        <field name="name">Asesor: Hanya Lihat Unit Kompetensi Miliknya</field>
+        <field name="model_id" ref="plugins_penilaian.model_lsp_hasil_asesmen_unit"/>
+        <field name="domain_force">[('hasil_asesmen_id.asesor_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('plugins_manajement_asesor.group_asesor'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+</odoo>

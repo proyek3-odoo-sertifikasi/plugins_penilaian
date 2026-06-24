@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <menuitem id="menu_lsp_root" name="LSP" sequence="1" web_icon="lsp_hasil_asesmen,static/description/icon.svg"/>
-  <menuitem id="menu_lsp_asesmen" name="Asesmen" parent="menu_lsp_root" sequence="10"/>
-  <menuitem id="menu_lsp_hasil_asesmen" name="Hasil Asesmen" parent="menu_lsp_asesmen" action="action_lsp_hasil_asesmen" sequence="10"/>
+  <!-- Menu LSP hanya untuk Asesor dan Admin LSP -->
+  <menuitem id="menu_lsp_root" name="Penilaian Sertifikasi" sequence="1"
+            web_icon="lsp_hasil_asesmen,static/description/icon.svg"
+            groups="plugins_manajement_asesor.group_asesor,plugins_manajement_asesor.group_admin_lsp"/>
+  <menuitem id="menu_lsp_asesmen" name="Asesmen" parent="menu_lsp_root" sequence="10"
+            groups="plugins_manajement_asesor.group_asesor,plugins_manajement_asesor.group_admin_lsp"/>
+  <menuitem id="menu_lsp_hasil_asesmen" name="Hasil Asesmen" parent="menu_lsp_asesmen"
+            action="action_lsp_hasil_asesmen" sequence="10"
+            groups="plugins_manajement_asesor.group_asesor,plugins_manajement_asesor.group_admin_lsp"/>
 </odoo>
